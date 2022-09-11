@@ -12,7 +12,7 @@ import org.springframework.web.client.HttpClientErrorException
 class MatchClient(
     private val apiService: ApiService<GetMatchListResponseDto>
 ) {
-    fun fetchGameListId(): List<String?> {
+    fun fetchGameListId(userId: Int): List<String?> {
         val headers = setMatchHeaders()
 
         var num = "0"
@@ -21,7 +21,7 @@ class MatchClient(
 
         while (true) {
             try {
-                post = postMatchList(headers, num)
+                post = postMatchList(headers, num, userId)
                 num = post.body!!.message
                 resultList.addAll(post.body!!.result
                     .filter { it.map_name.equals("제3보급창고") }
@@ -30,7 +30,7 @@ class MatchClient(
                 println(num)
             } catch (e: HttpClientErrorException) {
                 println(e.printStackTrace())
-                Thread.sleep(60000)
+                Thread.sleep(10000)
             } catch (e: Exception) {
                 println(e.printStackTrace())
                 break
@@ -43,11 +43,12 @@ class MatchClient(
 
     private fun postMatchList(
         headers: LinkedMultiValueMap<String, String>,
-        num: String
+        num: String,
+        userId: Int
     ) = apiService.post(
         "https://barracks.sa.nexon.com/api/Match/GetMatchList/",
         headers,
-        GetMatchListRequestDto(seq_no = num.toLong()),
+        GetMatchListRequestDto(seq_no = num.toLong(), user_nexon_sn = userId.toString()),
         GetMatchListResponseDto::class.java
     )
 

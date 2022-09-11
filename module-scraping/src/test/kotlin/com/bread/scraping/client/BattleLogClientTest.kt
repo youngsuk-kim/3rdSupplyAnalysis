@@ -1,4 +1,4 @@
-package com.bread.analysis3rdsupply.webclient
+package com.bread.scraping.client
 
 import com.bread.scraping.client.BattleLogClient
 import org.junit.jupiter.api.Test
@@ -13,6 +13,6 @@ internal class BattleLogClientTest {
 
     @Test
     fun test() {
-        battleLogClient.fetchBattleLog()
+        battleLogClient.fetchBattleLog(123124)
     }
 }

@@ -1,17 +1,17 @@
-package com.bread.scraping.client
+package com.bread.scraping.parser
 
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-internal class UserSearchClientTest {
+internal class UserBattleLogParserTest {
+
     @Autowired
-    lateinit var userSearchClient: UserSearchClient
+    lateinit var userBattleLogParser: UserBattleLogParser
 
     @Test
     fun test() {
-        val fetchUserId = userSearchClient.fetchUserId("빵석")
-        println(fetchUserId)
+        userBattleLogParser.parse("프봉")
     }
 }

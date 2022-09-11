@@ -1,4 +1,4 @@
-package com.bread.analysis3rdsupply.webclient
+package com.bread.scraping.client
 
 import com.bread.scraping.client.MatchClient
 import org.junit.jupiter.api.Test
@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-internal class MatchClientTest @Autowired constructor(
-    private val matchClient: MatchClient
-) {
+internal class MatchClientTest {
+
+    @Autowired
+    lateinit var matchClient: MatchClient
+
     @Test
     fun test() {
-        matchClient.fetchGameListId()
+//        matchClient.fetchGameListId()
     }
 }

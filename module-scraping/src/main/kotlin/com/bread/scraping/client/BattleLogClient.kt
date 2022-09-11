@@ -12,23 +12,24 @@ class BattleLogClient(
     private val apiService: ApiService<BattleLogResponseDto>,
     private val matchClient: MatchClient
 ) {
-    fun fetchBattleLog() {
+    fun fetchBattleLog(userId: Int) {
         val headers = setBattleLogHeaders()
 
-        val gameListId = matchClient.fetchGameListId()
+        val gameListId = matchClient.fetchGameListId(userId)
         val battleLogList = mutableListOf<BattleLog>()
-        for (id in gameListId) {
+        for (gameId in gameListId) {
             try {
                 val result = apiService.post(
-                    "https://barracks.sa.nexon.com/api/BattleLog/GetBattleLog/${id}/2047101791",
+                    "https://barracks.sa.nexon.com/api/BattleLog/GetBattleLog/${gameId}/${userId}",
                     headers,
                     DummyRequestDto(),
                     BattleLogResponseDto::class.java
                 )
+                println(result.body!!.battleLog!!)
                 battleLogList.addAll(result.body!!.battleLog!!)
             } catch (e: HttpClientErrorException) {
                 println(e.printStackTrace())
-                Thread.sleep(60000)
+                Thread.sleep(10000)
             }
         }
     }
