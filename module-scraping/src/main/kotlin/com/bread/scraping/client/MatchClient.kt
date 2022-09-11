@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpClientErrorException
 class MatchClient(
     private val apiService: ApiService<GetMatchListResponseDto>
 ) {
-
     fun fetchGameListId(): List<String?> {
         val headers = setMatchHeaders()
 

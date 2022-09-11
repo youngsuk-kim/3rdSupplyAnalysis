@@ -35,3 +35,14 @@ fun setBattleLogHeaders(): LinkedMultiValueMap<String, String> {
     multiValueMap["Content-Length"] = "0"
     return multiValueMap
 }
+
+fun setUserHeaders(): LinkedMultiValueMap<String, String> {
+    val multiValueMap = LinkedMultiValueMap<String, String>()
+    multiValueMap["Accept"] = ACCPET
+    multiValueMap["Content-Type"] = CONTENT_TYPE
+    multiValueMap["User-Agent"] = USER_AGENT
+    multiValueMap["Origin"] = ORIGIN
+    multiValueMap["Accept-Encoding"] = ACCEPT_ENCODING
+    multiValueMap["Content-Length"] = "0"
+    return multiValueMap
+}

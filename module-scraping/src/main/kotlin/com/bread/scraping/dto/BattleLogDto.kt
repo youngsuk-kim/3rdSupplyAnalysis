@@ -4,10 +4,6 @@ data class BattleLogResponseDto(
     val battleLog: List<BattleLog>?
 )
 
-data class BattleRequestDto(
-    val data: String = "dummy"
-)
-
 data class BattleLog(
     val death_x: Double?,
     val death_y: Double?,
