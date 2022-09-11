@@ -2,8 +2,8 @@ package com.bread.analysis3rdsupply.webclient
 
 
 data class GetMatchListRequestDto(
-    val min_seq_no: Long = 70220000119000000,
-    val mode_flag: String = "ALL",
+    val min_seq_no: Long? = 70220000119000000,
+    val mode_flag: String? = "ALL",
     val seq_no: Long = 0,
     val user_nexon_sn: String = "2047101791"
 )

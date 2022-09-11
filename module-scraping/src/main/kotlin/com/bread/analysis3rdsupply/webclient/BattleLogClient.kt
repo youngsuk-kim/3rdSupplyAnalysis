@@ -1,5 +1,7 @@
 package com.bread.analysis3rdsupply.webclient
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.stereotype.Component
 import org.springframework.util.LinkedMultiValueMap
 
@@ -19,17 +21,26 @@ class BattleLogClient(
         multiValueMap["Accept-Encoding"] = "gzip, deflate, br"
         multiValueMap["Content-Length"] = "0"
 
-        val gameListId = matchClient.fetchGameListId()
+        try {
+            val gameListId = matchClient.fetchGameListId()
 
-        for (id in gameListId) {
-            val result = apiService.post(
-                "https://barracks.sa.nexon.com/api/BattleLog/GetBattleLog/${id}/2047101791",
-                multiValueMap,
-                BattleRequestDto(),
-                BattleLogResponseDto::class.java
-            )
+            for (id in gameListId) {
 
-            println(result.body)
+                Thread.sleep(2000)
+
+                val result = apiService.post(
+                    "https://barracks.sa.nexon.com/api/BattleLog/GetBattleLog/${id}/2047101791",
+                    multiValueMap,
+                    BattleRequestDto(),
+                    BattleLogResponseDto::class.java
+                )
+
+                println(result.body)
+            }
+        } catch (e: HttpMessageNotReadableException) {
+            println("종료")
         }
+
+
     }
 }

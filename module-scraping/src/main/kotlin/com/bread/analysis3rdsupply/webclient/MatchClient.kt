@@ -1,5 +1,7 @@
 package com.bread.analysis3rdsupply.webclient
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.stereotype.Component
 import org.springframework.util.LinkedMultiValueMap
 
@@ -28,10 +30,34 @@ class MatchClient(
             GetMatchListResponseDto::class.java
         )
 
-        return result.body!!.result
-            .filter { it.map_name.equals("제3보급창고") }
-            .filter { it.match_name.equals("클랜매치") }
-            .map { it.match_key }
+        var num = "0"
+        var iteration = 0
+        val resultList = mutableListOf<String?>()
+        while (result.body != null) {
+            try {
+
+                val post = apiService.post(
+                    "https://barracks.sa.nexon.com/api/Match/GetMatchList/",
+                    multiValueMap,
+                    GetMatchListRequestDto(seq_no = num.toLong()),
+                    GetMatchListResponseDto::class.java
+                )
+
+                Thread.sleep(2000)
+
+                num = post.body!!.message
+                resultList.addAll(post.body!!.result
+                    .filter { it.map_name.equals("제3보급창고") }
+                    .filter { it.match_name.equals("클랜매치") }
+                    .map { it.match_key })
+
+                iteration++
+            } catch (e: Exception) {
+                break
+            }
+        }
+
+        return resultList
     }
 
 }
