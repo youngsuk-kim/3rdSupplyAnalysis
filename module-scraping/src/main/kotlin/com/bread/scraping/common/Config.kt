@@ -1,14 +1,9 @@
-package com.bread.analysis3rdsupply.webclient
+package com.bread.scraping.common
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.cfg.CoercionAction
-import com.fasterxml.jackson.databind.cfg.CoercionInputShape
-import com.fasterxml.jackson.databind.type.LogicalType
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 import org.springframework.web.client.RestTemplate
 
 

@@ -1,4 +1,4 @@
-package com.bread.analysis3rdsupply
+package com.bread.scraping
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

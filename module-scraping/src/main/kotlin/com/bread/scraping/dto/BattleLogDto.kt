@@ -1,4 +1,4 @@
-package com.bread.analysis3rdsupply.webclient
+package com.bread.scraping.dto
 
 data class BattleLogResponseDto(
     val battleLog: List<BattleLog>?

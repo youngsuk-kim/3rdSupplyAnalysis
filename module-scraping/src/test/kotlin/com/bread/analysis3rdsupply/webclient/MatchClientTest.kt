@@ -1,5 +1,6 @@
 package com.bread.analysis3rdsupply.webclient
 
+import com.bread.scraping.client.MatchClient
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
