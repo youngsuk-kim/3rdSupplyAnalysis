@@ -1,6 +1,6 @@
 package com.bread.scraping.client
 
-import com.bread.scraping.client.BattleLogClient
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -12,6 +12,7 @@ internal class BattleLogClientTest {
     lateinit var battleLogClient: BattleLogClient
 
     @Test
+    @Disabled
     fun test() {
         battleLogClient.fetchBattleLog(123124)
     }

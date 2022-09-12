@@ -12,7 +12,7 @@ class BattleLogClient(
     private val apiService: ApiService<BattleLogResponseDto>,
     private val matchClient: MatchClient
 ) {
-    fun fetchBattleLog(userId: Int) {
+    fun fetchBattleLog(userId: Int): MutableList<BattleLog> {
         val headers = setBattleLogHeaders()
 
         val gameListId = matchClient.fetchGameListId(userId)
@@ -32,6 +32,7 @@ class BattleLogClient(
                 Thread.sleep(10000)
             }
         }
+        return battleLogList
     }
 
 }

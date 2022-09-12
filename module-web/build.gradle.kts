@@ -8,4 +8,6 @@ tasks.getByName("jar") {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    api(project(":module-db"))
+    api(project(":module-scraping"))
 }

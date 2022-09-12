@@ -24,4 +24,10 @@ data class BattleLog(
     val user_nexon_sn: Int?,
     val user_nick: String?,
     val weapon: String?
-)
+) {
+
+    data class KillPosition(
+        val killX: Double,
+        val killY: Double
+    )
+}

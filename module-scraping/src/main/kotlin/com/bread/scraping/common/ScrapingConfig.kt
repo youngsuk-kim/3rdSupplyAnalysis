@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate
 
 
 @Configuration
-class Config {
+class ScrapingConfig {
 
     @Bean
     fun restTemplate(): RestTemplate {
