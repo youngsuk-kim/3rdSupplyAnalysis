@@ -12,6 +12,6 @@ class BattleLogSaveServiceTest {
 
     @Test
     fun saveUserBattleLogData() {
-        battleLogSaveService.saveBattleLogByUserId(503852111)
+        battleLogSaveService.saveBattleLogByUserId(1141139732)
     }
 }

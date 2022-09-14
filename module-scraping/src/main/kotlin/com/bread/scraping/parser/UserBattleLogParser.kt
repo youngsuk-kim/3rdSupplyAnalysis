@@ -11,6 +11,6 @@ class UserBattleLogParser(
 ) {
     fun parse(nickName: String) {
         val fetchUserId = userSearchClient.fetchUserId(nickName)
-        battleLogClient.fetchBattleLog(fetchUserId!!)
+        val fetchBattleLog = battleLogClient.fetchBattleLog(fetchUserId!!)
     }
 }

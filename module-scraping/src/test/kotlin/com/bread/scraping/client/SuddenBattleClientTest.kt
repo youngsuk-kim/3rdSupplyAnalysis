@@ -1,19 +1,20 @@
 package com.bread.scraping.client
 
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-internal class BattleLogClientTest {
+internal class SuddenBattleClientTest {
 
     @Autowired
-    lateinit var battleLogClient: BattleLogClient
+    lateinit var suddenBattleClient: SuddenBattleClient
 
-    @Test
     @Disabled
+    @Test
     fun test() {
-        battleLogClient.fetchBattleLog(1141139732)
+        suddenBattleClient.fetchClan()
     }
 }

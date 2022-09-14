@@ -15,7 +15,11 @@ class ApiService<T>(
         return callApiEndPoint(url, HttpMethod.POST, httpHeaders, body, clazz)
     }
 
-    private fun callApiEndPoint(url: String, httpMethod: HttpMethod, httpHeaders: MultiValueMap<String, String>, body: Any, clazz: Class<T>): ResponseEntity<T> {
+    fun get(url: String, httpHeaders: MultiValueMap<String, String>, clazz: Class<T>): ResponseEntity<T> {
+        return callApiEndPoint(url, HttpMethod.GET, httpHeaders, null, clazz)
+    }
+
+    private fun callApiEndPoint(url: String, httpMethod: HttpMethod, httpHeaders: MultiValueMap<String, String>, body: Any?, clazz: Class<T>): ResponseEntity<T> {
         return restTemplate.exchange(url, httpMethod, HttpEntity(body, httpHeaders), clazz)
     }
 }
