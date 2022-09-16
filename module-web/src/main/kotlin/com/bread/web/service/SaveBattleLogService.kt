@@ -6,6 +6,7 @@ import com.bread.database.entity.BattleLog
 import com.bread.database.entity.User
 import com.bread.database.model.UserType
 import com.bread.scraping.client.BattleLogClient
+import com.bread.scraping.client.ClanUserClient
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -20,13 +21,14 @@ class SaveBattleLogService(
         var foundUser = userRepository.findByUserNexonId(userId)
         val fetchBattleLog = battleLogClient.fetchBattleLog(userId)
 
+        if (fetchBattleLog.isEmpty()) {
+            return
+        }
+
         foundUser?.updateNickname(fetchBattleLog[0].user_nick!!)
 
         if (foundUser == null) {
             foundUser = User(nickname = fetchBattleLog[0].user_nick!!, userNexonId = userId, userType = userType)
-        }
-        for (battleLog in fetchBattleLog) {
-            foundUser.addNickname(foundUser, battleLog.user_nick!!)
         }
 
         for (battleLog in fetchBattleLog) {

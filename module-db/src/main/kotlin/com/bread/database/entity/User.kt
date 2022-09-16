@@ -24,14 +24,8 @@ class User (
     @Enumerated(EnumType.STRING)
     private var userType: UserType,
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = [CascadeType.ALL])
-    private val nicknames: Set<Nickname> = mutableSetOf()
 ) {
     fun updateNickname(nickname: String) {
         nickname.let { this.nickname = nickname }
-    }
-
-    fun addNickname(user: User, nickname: String) {
-        nicknames.plus(Nickname(user = user, nickname = nickname))
     }
 }

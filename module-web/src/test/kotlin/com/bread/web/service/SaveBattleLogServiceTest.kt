@@ -20,6 +20,11 @@ class SaveBattleLogServiceTest {
     lateinit var saveBattleLogService: SaveBattleLogService
 
     @Test
+    fun test() {
+        clanUserClient.fetchUserInfoIdListByClanId(listOf("dasd123445"))
+    }
+
+    @Test
     fun saveSuddenBattleUserBattleLogData() {
         val parseClanId = suddenBattleParser.parseClanId()
         val userInfoIdList = clanUserClient.fetchUserInfoIdListByClanId(parseClanId)

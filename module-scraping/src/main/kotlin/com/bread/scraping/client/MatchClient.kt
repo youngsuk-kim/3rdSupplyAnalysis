@@ -1,6 +1,5 @@
 package com.bread.scraping.client
 
-import com.bread.scraping.common.RandomProxy.isProxyOn
 import com.bread.scraping.service.ApiService
 import com.bread.scraping.dto.GetMatchListRequestDto
 import com.bread.scraping.dto.GetMatchListResponseDto
@@ -61,10 +60,6 @@ class MatchClient(
         return try {
             requestMatchList(headers, num, userId)
         } catch (e: HttpClientErrorException.TooManyRequests) {
-            if (!isProxyOn) {
-                logger.log(LogRecord(Level.INFO, "크롤링을 30초 동안 정지합니다"))
-                Thread.sleep(30000)
-            }
             requestMatchList(headers, num, userId)
         }
     }

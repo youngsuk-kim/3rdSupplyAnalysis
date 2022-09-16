@@ -4,7 +4,10 @@ import com.bread.scraping.dto.BattleLog
 import com.bread.scraping.dto.BattleLogResponseDto
 import com.bread.scraping.dto.DummyRequestDto
 import com.bread.scraping.service.ApiService
+import com.fasterxml.jackson.databind.exc.InvalidFormatException
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.stereotype.Component
+import org.springframework.web.client.RestClientException
 
 @Component
 class BattleLogClient(
@@ -19,17 +22,23 @@ class BattleLogClient(
             if (i == 10) {
                 break
             }
-            try {
-                val result = apiService.post(
-                    "https://barracks.sa.nexon.com/api/BattleLog/GetBattleLog/${gameListId[i]}/${userId}",
-                    headers,
-                    DummyRequestDto(),
-                    BattleLogResponseDto::class.java
-                )
-                println(result.body!!.battleLog!!)
-                battleLogList.addAll(result.body!!.battleLog!!)
-            } catch (e: Exception) {
-                e.printStackTrace()
+            while (true) {
+                try {
+                    val result = apiService.post(
+                        "https://barracks.sa.nexon.com/api/BattleLog/GetBattleLog/${gameListId[i]}/${userId}",
+                        headers,
+                        DummyRequestDto(),
+                        BattleLogResponseDto::class.java
+                    )
+                    println(result.body!!.battleLog!!)
+                    battleLogList.addAll(result.body!!.battleLog!!)
+                } catch (e: HttpMessageNotReadableException) {
+                    break
+                } catch (e: RestClientException) {
+                    break
+                } catch (e: InvalidFormatException) {
+                    break
+                }
             }
         }
         return battleLogList
