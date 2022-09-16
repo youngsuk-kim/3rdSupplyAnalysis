@@ -1,9 +1,9 @@
 package com.bread.scraping.dto
 
 data class ClanInfoResponseDto(
-    val message: Any,
-    val result: ClanResult,
-    val rtnCode: Int
+    val message: Any?,
+    val result: ClanResult?,
+    val rtnCode: Int?
 )
 
 data class ClanInfo(

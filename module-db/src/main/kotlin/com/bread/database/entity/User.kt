@@ -1,7 +1,10 @@
 package com.bread.database.entity
 
+import com.bread.database.model.UserType
 import javax.persistence.CascadeType
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -17,6 +20,9 @@ class User (
     private var nickname: String,
 
     private var userNexonId: Int,
+
+    @Enumerated(EnumType.STRING)
+    private var userType: UserType,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = [CascadeType.ALL])
     private val nicknames: Set<Nickname> = mutableSetOf()

@@ -10,4 +10,8 @@ class SuddenBattleClient(
     fun fetchClan(): String? {
         return apiService.get("http://suddenbattle.com/", setDummyHeaders(), String::class.java).body
     }
+
+    fun fetchUser(clanId: String): String? {
+        return apiService.get("http://suddenbattle.com/?page=1&clan_idx=${clanId}", setDummyHeaders(), String::class.java).body
+    }
 }

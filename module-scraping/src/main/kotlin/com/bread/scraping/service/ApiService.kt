@@ -12,7 +12,8 @@ class ApiService<T>(
     private val restTemplate: RestTemplate
 ) {
     fun post(url: String, httpHeaders: MultiValueMap<String, String>, body: Any, clazz: Class<T>): ResponseEntity<T> {
-        return callApiEndPoint(url, HttpMethod.POST, httpHeaders, body, clazz)
+        val callApiEndPoint = callApiEndPoint(url, HttpMethod.POST, httpHeaders, body, clazz)
+        return callApiEndPoint
     }
 
     fun get(url: String, httpHeaders: MultiValueMap<String, String>, clazz: Class<T>): ResponseEntity<T> {
